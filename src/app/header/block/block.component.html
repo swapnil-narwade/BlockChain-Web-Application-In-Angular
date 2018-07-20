@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <form class="navbar-form navbars" (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="form-group">
+      <input type="text"
+             class="form-control"
+             style="margin-top: 30px"
+             placeholder="Enter the hash value to get Block"
+             name="blockName"
+             ngModel
+             required
+      >
+      <button type="submit" style="margin-top: 5px" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+<app-search-block></app-search-block>
