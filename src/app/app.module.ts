@@ -11,8 +11,8 @@ import { TransactionComponent } from './header/transaction/transaction.component
 import { CompanyComponent } from './header/company/company.component';
 import {FormsModule} from "@angular/forms";
 import { SearchBlockComponent } from './header/block/search-block/search-block.component';
-import {RoutingService} from "./routing.service";
 import {BlockchainAPIserviceService} from "./blockchain-apiservice.service";
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -24,7 +24,8 @@ import {BlockchainAPIserviceService} from "./blockchain-apiservice.service";
     RecentBlockComponent,
     TransactionComponent,
     CompanyComponent,
-    SearchBlockComponent
+    SearchBlockComponent,
+    FooterComponent
 
   ],
   imports: [
@@ -33,8 +34,7 @@ import {BlockchainAPIserviceService} from "./blockchain-apiservice.service";
     AppRoutingModule,
     FormsModule
   ],
-  providers: [RoutingService,
-  BlockchainAPIserviceService],
+  providers: [BlockchainAPIserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

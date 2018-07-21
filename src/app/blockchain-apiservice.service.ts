@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from "@angular/common/http";
 import { Router} from "@angular/router";
 import { BehaviorSubject} from "rxjs/internal/BehaviorSubject";
+import {Observable} from "rxjs/internal/Observable";
+import {observable} from "rxjs/internal-compatibility";
+import {Observer} from "rxjs/internal/types";
 
 
 export interface Mydata {
@@ -27,15 +30,12 @@ export interface NewData {
   hash: String,
   vout_sz: Number
 }
-
-
-
+let dataFromInput = {};
+let url = {};
 @Injectable({
   providedIn: 'root'
 })
 export class BlockchainAPIserviceService {
-  private sharingData = new BehaviorSubject<string>('00000000000000000002127dc307e7a89c83226150e85a3b9e163507e1cba768');
-  currentData = this.sharingData.asObservable();
 
   constructor(private http: HttpClient) {
   }
@@ -43,17 +43,10 @@ export class BlockchainAPIserviceService {
     return this.http.get('/api/latestblock')
   }
 
-  sendSingleData(newData) {
-    this.sharingData.next(newData );
-    let url = `/api/rawblock/${newData}`;
-    return this.http.get(url);
-
-
+  sendSingleData(inputHash: String) {
+    const myObservable = Observable.create((observer : Observer)=>{
+    observer.next(this.http.get(`/api/rawblock/${inputHash}`))
+    });
   }
 
-
-  // sendTransactionData (){
-  //   let url = `/api/rawtx/${inputHash}`;
-  //   return this.http.get(url)
-  // }
 }
