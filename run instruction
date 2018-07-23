@@ -1,0 +1,6 @@
+Clone this repo to your local directory
+install node and npm globally (if you dont have it already)
+install angular/cli in the project folder 
+run command ==> npm start 
+open browser ==> localhost:4200
+here you will see the application runnig
