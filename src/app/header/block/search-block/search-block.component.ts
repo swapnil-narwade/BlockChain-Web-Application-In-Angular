@@ -23,7 +23,21 @@ export class SearchBlockComponent implements OnInit {
   relayed_by={};
   tx={};
   constructor(private ApiService: BlockchainAPIserviceService) {
-
+    this.hash = "----";
+    this.ver = "----";
+    this.prev_block = "----";
+    this.mrkl_root = "----";
+    this.time = "----";
+    this.bits = "----";
+    this.nonce = "----";
+    this.n_tx = "----";
+    this.size = "----";
+    this.block_index = "----";
+    this.main_chain = "----";
+    this.height = "----";
+    this.received_time = "----";
+    this.relayed_by = "----";
+    this.tx = "----";
     this.recieveData();
   }
   private recieveData() {

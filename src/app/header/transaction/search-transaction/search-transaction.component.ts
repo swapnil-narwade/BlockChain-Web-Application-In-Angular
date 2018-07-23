@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BlockchainAPIserviceService, NewTransactionData} from "../../../blockchain-apiservice.service";
+import {BlockchainAPIserviceService, NewTransactionData, Out} from "../../../blockchain-apiservice.service";
 
 @Component({
   selector: 'app-search-transaction',
@@ -19,8 +19,19 @@ export class SearchTransactionComponent implements OnInit {
   inputs = {};
   out = {};
 
-  constructor(private ApiService: BlockchainAPIserviceService) {
 
+  constructor(private ApiService: BlockchainAPIserviceService) {
+    this.hash = "-----";
+    this.ver = "----";
+    this.vin_sz = "----";
+    this.vout_sz = "----";
+    this.lock_time = "----";
+    this.size = "----";
+    this.relayed_by = "----";
+    this.block_height = "----";
+    this.tx_index = "----";
+    this.inputs = "----";
+    this.out = "---";
     this.recieveData();
   }
   private recieveData() {
@@ -36,10 +47,18 @@ export class SearchTransactionComponent implements OnInit {
         this.block_height = data.block_height;
         this.tx_index = data.tx_index;
         this.inputs = data.inputs;
-        this.out = data.out;
+        this.inputs = "";
+        let b = data.inputs.length;
+        for (let i=0 ; i<b; i++) {
+          this.inputs += `${data.inputs[i].sequence},`
+        }
+        this.out = "";//data.out;
+         let a = data.out.length;
+         for (let i=0 ; i<a; i++){
+           this.out+=`${data.out[i].value},`
+         }
       })
     });
   }
-
   ngOnInit() {  }
 }

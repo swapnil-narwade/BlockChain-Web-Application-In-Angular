@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Subject} from "rxjs/internal/Subject";
+import {st} from "@angular/core/src/render3";
 
 export interface Mydata {
   hash: String,
@@ -25,7 +26,15 @@ export interface NewData {
   height:Number,
   received_time:Number,
   relayed_by:String,
-  tx:Array<string>[]
+  tx:Array<{}>[]
+}
+export interface Out{
+  script:String,
+  value:String
+}
+export interface input {
+  sequence: String,
+  script: String
 }
 
 export interface NewTransactionData {
@@ -38,8 +47,8 @@ export interface NewTransactionData {
   relayed_by:String,
   block_height:Number,
   tx_index:String,
-  inputs:Array<string>,
-  out:Array<string>
+  inputs:Array<input>,
+  out:Array<Out>
 }
 
 @Injectable({
@@ -53,7 +62,6 @@ export class BlockchainAPIserviceService {
       return this.http.get<Mydata>('/api/latestblock');
   }
   getSingleBlock(data: String){
-    console.log(data);
     return this.http.get<NewData>(`/api/rawblock/${data}`);
   }
   getSingleTransaction(data: String){

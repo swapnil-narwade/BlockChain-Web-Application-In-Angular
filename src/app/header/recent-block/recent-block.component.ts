@@ -13,8 +13,13 @@ export class RecentBlockComponent implements OnInit {
   height = {};
   txIndexes= {};
 
-  constructor(private ApiService : BlockchainAPIserviceService) { }
-
+  constructor(private ApiService : BlockchainAPIserviceService) {
+    this.hash = "";
+    this.time = "";
+    this.block_index = "";
+    this.height = "";
+    this.txIndexes = "";
+  }
   ngOnInit() {
     this.ApiService.getLatestData().subscribe((data: Mydata)=>{
       this.hash = data.hash;
@@ -22,6 +27,7 @@ export class RecentBlockComponent implements OnInit {
       this.block_index = data.block_index;
       this.height = data.height;
       this.txIndexes = data.txIndexes;
+
     })
   }
 
