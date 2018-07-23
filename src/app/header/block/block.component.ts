@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {BlockchainAPIserviceService} from '../../blockchain-apiservice.service';
 
+
 @Component({
   selector: 'app-block',
   templateUrl: './block.component.html',
@@ -10,14 +11,11 @@ import {BlockchainAPIserviceService} from '../../blockchain-apiservice.service';
 export class BlockComponent implements OnInit {
 
   constructor(private ApiService: BlockchainAPIserviceService) {
-    }
-
-  ngOnInit() {
   }
 
+  ngOnInit() {  }
+
   onSubmit(form: NgForm) {
-    const value = form.value;
-    let inputHash : String = value.blockName;
-    this.ApiService.sendSingleData(inputHash);
+    this.ApiService.sendInputFromSingleBlock.next(form.value.blockName);
   }
 }

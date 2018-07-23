@@ -1,5 +1,26 @@
-.footerul{
+.panel{
+  margin: 0;
+  padding: 0;
+}
+.panel1{
+  margin-top: 0px;
+  background-color: #415ebf;
+  border: #0b2e13;
+  border-radius: 15px;
+  border-style: solid;
+  padding: 2px;
+  -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+}
 
+.link1{
+  color: #3dce10;
+  font-family: 'Comic Sans MS';
+  font-size: x-large;
+  margin-left: 10px;
+}
+.footerul{
   list-style-type: none;
   margin: 0;
   padding: 0;

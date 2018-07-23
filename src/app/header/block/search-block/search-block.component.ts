@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from "@angular/forms";
 import {BlockchainAPIserviceService, NewData} from '../../../blockchain-apiservice.service';
-import {stringify} from "querystring";
-import { ActivatedRoute} from "@angular/router";
-import { HttpClient} from "@angular/common/http";
-
 
 @Component({
   selector: 'app-search-block',
@@ -12,52 +7,48 @@ import { HttpClient} from "@angular/common/http";
   styleUrls: ['./search-block.component.css']
 })
 export class SearchBlockComponent implements OnInit {
-  ver: {};
-  inputs: {};
-  weight: {};
-  block_height: {};
-  relayed_by: {};
-  out : {};
-  lock_time: {};
-  size: {};
-  double_spend: {};
-  time: {};
-  tx_index: {};
-  vin_sz: {};
-  hash: {};
-  vout_sz: {};
-newdata= {};
-id = {};
-  constructor(private ApiService: BlockchainAPIserviceService,
-              private route: ActivatedRoute,
-              private http: HttpClient
-              ) {
-    this.route.params.subscribe( params => this.id= params.id );
-  }
-  getLatestData() {
-    return this.http.get(`/api/rawblock/${this.id}`);
-  }
-   ngOnInit() {
-     this.id = stringify(this.getLatestData());
-  //   this.ApiService.sendSingleData(newdata).subscribe((newData: NewData)=>{
-  //     this.ver = newData.ver,
-  //     this.inputs= newData.inputs,
-  //     this.weight=newData.weight,
-  //     this.block_height=newData.block_height,
-  //     this.relayed_by= newData.relayed_by,
-  //     this.out =newData.out,
-  //     this.lock_time=newData.lock_time,
-  //     this.size=newData.size,
-  //     this.double_spend=newData.double_spend,
-  //     this.time=newData.time,
-  //     this.tx_index=newData.tx_index,
-  //     this.vin_sz=newData.vin_sz,
-  //     this.hash=newData.hash,
-  //     this.vout_sz=newData.vout_sz
-  //   })
+  hash={};
+  ver={};
+  prev_block={};
+  mrkl_root={};
+  time={};
+  bits={};
+  nonce={};
+  n_tx={};
+  size={};
+  block_index={};
+  main_chain={};
+  height={};
+  received_time={};
+  relayed_by={};
+  tx={};
+  constructor(private ApiService: BlockchainAPIserviceService) {
 
+    this.recieveData();
+  }
+  private recieveData() {
+      this.ApiService.sendInputFromSingleBlock.subscribe((data: string)=>{
+      this.ApiService.getSingleBlock(data).subscribe((data: NewData)=>{
+        this.hash = data.hash;
+        this.ver = data.ver;
+        this.prev_block = data.prev_block;
+        this.mrkl_root = data.mrkl_root;
+        this.time = data.time;
+        this.bits = data.bits;
+        this.nonce = data.nonce;
+        this.n_tx = data.n_tx;
+        this.size = data.size;
+        this.block_index = data.block_index;
+        this.main_chain = data.main_chain;
+        this.height = data.height;
+        this.received_time = data.received_time;
+        this.relayed_by = data.relayed_by;
+        this.tx = data.tx;
+      })
+    });
   }
 
-    }
+  ngOnInit() {  }
+}
 
 

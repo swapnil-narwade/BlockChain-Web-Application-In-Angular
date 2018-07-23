@@ -13,7 +13,7 @@ import {FormsModule} from "@angular/forms";
 import { SearchBlockComponent } from './header/block/search-block/search-block.component';
 import {BlockchainAPIserviceService} from "./blockchain-apiservice.service";
 import { FooterComponent } from './footer/footer.component';
-
+import { SearchTransactionComponent } from './header/transaction/search-transaction/search-transaction.component';
 
 
 @NgModule({
@@ -25,7 +25,8 @@ import { FooterComponent } from './footer/footer.component';
     TransactionComponent,
     CompanyComponent,
     SearchBlockComponent,
-    FooterComponent
+    FooterComponent,
+    SearchTransactionComponent
 
   ],
   imports: [

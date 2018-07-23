@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {BlockchainAPIserviceService} from "../../blockchain-apiservice.service";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-transaction',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private ApiService: BlockchainAPIserviceService) {
   }
 
+  ngOnInit() {  }
+
+  onSubmit(form: NgForm) {
+    this.ApiService.sendInputFromSingleTransaction.next(form.value.blockName);
+
+  }
 }

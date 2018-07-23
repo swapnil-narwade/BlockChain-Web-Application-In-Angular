@@ -22,7 +22,6 @@ export class RecentBlockComponent implements OnInit {
       this.block_index = data.block_index;
       this.height = data.height;
       this.txIndexes = data.txIndexes;
-      //this.BlockData = JSON.stringify(data,undefined,2);
     })
   }
 
